@@ -1,4 +1,4 @@
-module at-are-challenge
+module at-sre-challenge
 
 go 1.24.4
 
