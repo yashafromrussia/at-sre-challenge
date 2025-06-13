@@ -8,7 +8,6 @@ commonLabels:
   app: at-sre-challenge
 
 resources:
-  - namespace.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
