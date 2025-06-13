@@ -18,6 +18,7 @@ spec:
       containers:
       - name: at-sre-challenge
         image: at-sre-challenge:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
         envFrom:
