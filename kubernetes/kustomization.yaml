@@ -17,3 +17,10 @@ configMapGenerator:
   - name: at-sre-challenge-config
     envs:
       - app.env
+
+secretGenerator:
+  - name: at-sre-challenge-tls
+    type: kubernetes.io/tls
+    files:
+      - tls.crt
+      - tls.key

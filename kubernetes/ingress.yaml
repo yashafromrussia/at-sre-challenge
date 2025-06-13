@@ -4,7 +4,8 @@ metadata:
   name: at-sre-challenge
 spec:
   rules:
-  - http:
+  - host: at-sre-challenge.local
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -15,5 +16,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - at-sre-challenge.example.com
+    - at-sre-challenge.local
     secretName: at-sre-challenge-tls
