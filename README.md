@@ -20,6 +20,12 @@ The Makefile provides a convenient way to manage the build, deployment, and clea
 allowing for a smooth development experience. It also includes targets for generating TLS certificates,
 cluster setup, and teardown.
 
+Lastly, I'm using Kustomize to manage Kubernetes manifests, which allows for easy customization
+of the deployment configuration without duplicating YAML files. This is particularly useful for
+managing different environments (e.g., development, staging, production) with minimal overhead.
+However, I haven't implemented environment overlays yet, which is a TODO for future work. We could
+use Helm, but for this task it seemed like overkill, and Kustomize is sufficient for our needs.
+
 
 ## Running the project
 
@@ -69,6 +75,15 @@ To access the application, you can add an entry to your `/etc/hosts` file:
 ```bash
 127.0.0.1 at-sre-challenge.local
 ```
+
+#### Demonstrating Load Balancing
+
+To verify that traffic is being distributed across both pods, you can use `curl` with the verbose
+flag (`-v`) and observe the `X-Served-By` header in the response. You will see the header value
+change between different pod hostnames on subsequent requests.
+
+```bash
+curl -k -v https://at-sre-challenge.local
 
 ## TODOs
 
