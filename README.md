@@ -98,6 +98,7 @@ change between different pod hostnames on subsequent requests.
 
 ```bash
 curl -k -v https://at-sre-challenge.local
+```
 
 ## TODOs
 
