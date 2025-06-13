@@ -23,3 +23,27 @@ spec:
         envFrom:
         - configMapRef:
             name: at-sre-challenge-config
+
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+      terminationGracePeriodSeconds: 10
