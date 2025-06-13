@@ -36,7 +36,8 @@ func config() Config {
 func main() {
 	cfg := config()
 
-	logger := slog.Default().With(
+	handler := slog.NewJSONHandler(os.Stdout, nil)
+	logger := slog.New(handler).With(
 		"appName", cfg.AppName,
 		"port", cfg.Port,
 	)
@@ -47,6 +48,11 @@ func main() {
 	router.Use((middleware.Logger))
 
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		hostname, _ := os.Hostname()
+
+		// Set the header to indicate which server handled the request
+		w.Header().Set("X-Served-By", hostname)
+
 		w.Write([]byte(cfg.AppName))
 	})
 	router.Get("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
