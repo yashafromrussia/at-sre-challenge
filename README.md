@@ -2,10 +2,24 @@
 
 This repository contains the code for the SRE challenge at AirTasker.
 
-The project is using Go for the simple backend service. This allows us to have a lightweight Docker
-image, and less importantly for this challenge, an efficient and performant service.
+## Rationale
 
-We're using chi as the HTTP router, which is a lightweight and idiomatic router for Go.
+The project is designed to be simple and straightforward, focusing on the core functionality of the
+service. The use of Go allows for a lightweight and efficient application, while the choice of chi
+as the router provides a clean and idiomatic way to handle HTTP requests.
+
+I've made the decision to use `kind` for local Kubernetes development as it allows for a quick
+setup of a Kubernetes cluster with NGINX ingress. This is particularly useful for testing the
+application in an environment that closely resembles production.
+
+I'm also using a self-signed TLS certificate for local development. In a production environment, I
+would likely use `cert-manager` or another solution to manage TLS certificates, ensuring that the
+application is secure and compliant with best practices.
+
+The Makefile provides a convenient way to manage the build, deployment, and cleanup processes,
+allowing for a smooth development experience. It also includes targets for generating TLS certificates,
+cluster setup, and teardown.
+
 
 ## Running the project
 
@@ -59,3 +73,4 @@ To access the application, you can add an entry to your `/etc/hosts` file:
 ## TODOs
 
 - [ ] Add environment overlays for different environments (dev, staging, prod)
+- [ ] Use `cert-manager` for managing TLS certificates in production

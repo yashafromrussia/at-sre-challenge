@@ -14,6 +14,9 @@ spec:
             name: at-sre-challenge
             port:
               number: 80
+
+  # TODO: Using self-signed TLS certificate for local development. In production, we'd likely to use
+  # cert-manager or another solution to manage TLS certificates.
   tls:
   - hosts:
     - at-sre-challenge.local
