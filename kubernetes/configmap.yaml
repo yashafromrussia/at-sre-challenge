@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: at-sre-challenge-config
-  namespace: at-sre-challenge
-data:
-  APP_NAME: "airtasker"

@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: at-sre-challenge
-  namespace: at-sre-challenge
 spec:
   # TODO: We should use a HPA to scale the number of replicas based on the load.
   # For this challenge, we will use a fixed number of replicas.
