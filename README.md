@@ -26,8 +26,22 @@ managing different environments (e.g., development, staging, production) with mi
 However, I haven't implemented environment overlays yet, which is a TODO for future work. We could
 use Helm, but for this task it seemed like overkill, and Kustomize is sufficient for our needs.
 
-
 ## Running the project
+
+The project can be run in three different ways: locally, in Docker, or in Kubernetes. Below are the
+instructions for each method.
+
+### Prerequisites
+
+This project was developed and tested on macOS, but it should work on any Unix-like system.
+
+Before running the project, ensure you have the following tools installed:
+- Go (version 1.24.4 or later)
+- Docker
+- `kubectl` (for managing Kubernetes resources)
+- `kind` (for local Kubernetes development)
+- `make` (for running Makefile targets)
+- `openssl` (for generating TLS certificates)
 
 ### Locally
 
