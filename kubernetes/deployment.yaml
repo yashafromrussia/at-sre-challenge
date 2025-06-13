@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: at-sre-challenge
+  namespace: at-sre-challenge
+spec:
+  # TODO: We should use a HPA to scale the number of replicas based on the load.
+  # For this challenge, we will use a fixed number of replicas.
+  replicas: 2
+  selector:
+    matchLabels:
+      app: at-sre-challenge
+  template:
+    metadata:
+      labels:
+        app: at-sre-challenge
+    spec:
+      containers:
+      - name: at-sre-challenge
+        image: at-sre-challenge:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: at-sre-challenge-config

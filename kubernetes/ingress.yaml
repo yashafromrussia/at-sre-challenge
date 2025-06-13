@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: at-sre-challenge
+  namespace: at-sre-challenge
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: at-sre-challenge
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - at-sre-challenge.example.com
+    secretName: at-sre-challenge-tls
