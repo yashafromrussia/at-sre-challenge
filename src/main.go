@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -35,7 +35,14 @@ func config() Config {
 
 func main() {
 	cfg := config()
+
+	logger := slog.Default().With(
+		"appName", cfg.AppName,
+		"port", cfg.Port,
+	)
 	router := chi.NewRouter()
+
+	logger.Info("Starting server")
 
 	router.Use((middleware.Logger))
 
@@ -46,7 +53,10 @@ func main() {
 		w.Write([]byte("OK"))
 	})
 
-	http.ListenAndServe(":"+cfg.Port, router)
+	err := http.ListenAndServe(":"+cfg.Port, router)
 
-	log.Printf("Server is running on port %s", cfg.Port)
+	if err != nil {
+		logger.Error("Server received an error", "error", err)
+		os.Exit(1)
+	}
 }
