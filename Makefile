@@ -34,6 +34,7 @@ $(TLS_KEY_FILE) $(TLS_CERT_FILE):
 deploy: load generate-tls
 	@echo "--- Applying Kubernetes manifests ---"
 	kubectl apply -k $(K8S_FILES)
+	kubectl rollout restart deployment/at-sre-challenge
 
 # Target to delete Kubernetes resources
 clean:
